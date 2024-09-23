@@ -1,4 +1,4 @@
-```
+
 # Algoritmo B.A.T.M.A.N.
 
 L'algoritmo B.A.T.M.A.N. (Better Approach To Mobile Adhoc Networking) è un protocollo di routing efficiente, pensato per le reti ad hoc mobili (MANET) e le reti mesh. Il suo principio fondamentale è la decentralizzazione della conoscenza delle rotte, il che significa che ogni nodo non ha bisogno di avere una visione completa della topologia della rete. Invece, ogni nodo si concentra solo sui propri vicini immediati e sul miglior passo successivo per raggiungere una destinazione.
@@ -28,4 +28,4 @@ Per determinare se un OGM è stato ricevuto una o più volte, esso contiene un n
 In questo modo, gli OGMs vengono inondati selettivamente attraverso la rete mesh e informano i nodi riceventi dell'esistenza di altri nodi. Un nodo X impara dell'esistenza di un nodo Y ricevendo i suoi OGMs, quando questi vengono rilanciati dai vicini a singolo hop. Se il nodo X ha più di un vicino, può determinare, dal numero di messaggi di origine ricevuti più rapidamente e in modo più affidabile tramite uno dei suoi vicini a singolo hop, quale vicino scegliere per inviare dati al nodo distante.
 
 L'algoritmo seleziona quindi questo vicino come il miglior passo successivo verso l'origine del messaggio e configura di conseguenza la sua tabella di routing.
-```
+
