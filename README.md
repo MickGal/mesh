@@ -9,7 +9,7 @@
    ```
 
 2. **Installa le Dipendenze:**
-   Installa `batctl` e abilita `batman-adv` come negli altri dispositivi.
+   Installa `batctl` e abilita `batman-adv`.
    ```sh
    sudo apt install batctl -y
    ```
