@@ -142,8 +142,39 @@ Durante l'installazione, ti verrà chiesto di salvare le regole correnti di `ipt
 ```sh
 sudo iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
 ```
+11. Configurare la Raspberry come Gateway
+```sh
+sudo batctl gw_mode server
+```
 
-## 5. Verifica la Configurazione (prima configura una raspberry per il nodo mesh)
+## 5. Installazione server DHCP
+```sh
+sudo apt install isc-dhcp-server
+```
+```sh
+sudo nano /etc/dhcp/dhcpd.conf
+```
+Inserire questa configurazione:
+```
+subnet 10.0.0.0 netmask 255.255.255.0 {
+    range 10.0.0.10 10.0.0.100;
+    option routers 10.0.0.1;  # L'indirizzo IP del gateway (bat0)
+    option broadcast-address 10.0.0.255;
+    option domain-name-servers 8.8.8.8, 8.8.4.4;  # DNS
+}
+```
+```
+sudo nano /etc/default/isc-dhcp-server
+```
+Inserire `bat0` nelle inferfacce:
+```
+INTERFACESv4="bat0"
+```
+Infine restartare il server dhcp:
+```sh
+sudo systemctl restart isc-dhcp-server
+```
+## 6. Verifica la Configurazione (prima configura una raspberry per il nodo mesh)
 
 Per questa sezione potrebbe essere necessario farla in un secondo momento, quando saranno installate anche le raspberry della rete mesh.
 
@@ -218,11 +249,16 @@ sudo ip link set wlan0 up
 sudo batctl if add wlan0
 sudo ip link set up dev bat0
 ```
-### 6. Chiama il DHCP Client per assegnazione IP
+### 6. Configurare la Raspberry come Gateway
+```sh
+sudo batctl gw_mode server
+```
+
+### 7. Chiama il DHCP Client per assegnazione IP
 ```sh
 sudo dhclient bat0
 ```
-### 7. Verificare la Configurazione della Rete Mesh
+### 8. Verificare la Configurazione della Rete Mesh
 
 1. **Controlla lo Stato della Rete Mesh su Tutte le Raspberry Pi:**
 
