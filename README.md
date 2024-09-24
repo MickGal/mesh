@@ -58,7 +58,7 @@ sudo ip link set up dev bat0
 **Configura l'Indirizzo IP sull'Interfaccia `bat0`:**
 Assegna un indirizzo IP statico all'interfaccia `bat0` nella stessa sottorete utilizzata dalle altre Raspberry Pi nella rete mesh.
 ```sh
-sudo ip addr add 10.0.0.1/24 dev bat0  # Modifica l'IP in base alla tua rete
+sudo ifconfig bat0 10.0.0.1 netmask 255.255.255.0 up  # Modifica l'IP in base alla tua rete
 ```
 
 ## 3. Configurare la Condivisione della Connessione Internet
